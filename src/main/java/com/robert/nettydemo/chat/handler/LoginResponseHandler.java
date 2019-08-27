@@ -20,8 +20,7 @@ public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginRespo
         packet.setUuid(UUID.randomUUID().toString());
         packet.setUsername("robert");
         packet.setPassword("123456");
-
-        ctx.channel().writeAndFlush(packet);
+//        ctx.channel().writeAndFlush(packet);
     }
 
     protected void channelRead0(ChannelHandlerContext ctx, LoginResponsePacket responsePacket) throws Exception {

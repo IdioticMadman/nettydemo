@@ -55,7 +55,7 @@ public class NettyClient {
             public void run() {
                 while (!Thread.interrupted()) {
                     //客户端已登录
-                    if (LoginUtil.hasLogin(channel)) {
+//                    if (LoginUtil.hasLogin(channel)) {
                         System.out.println("输入消息发送到服务端：");
                         Scanner sc = new Scanner(System.in);
                         String text = sc.nextLine();
@@ -63,7 +63,7 @@ public class NettyClient {
                         MessageRequestPacket requestPacket = new MessageRequestPacket();
                         requestPacket.setMessage(text);
                         channel.writeAndFlush(requestPacket);
-                    }
+//                    }
                 }
             }
         }.start();

@@ -20,7 +20,6 @@ public class FirstServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println(new Date() + ": 服务端写出数据");
         ByteBuf out = getByteBuf(ctx);
         ctx.channel().writeAndFlush(out);
-        super.channelRead(ctx, msg);
 
     }
 

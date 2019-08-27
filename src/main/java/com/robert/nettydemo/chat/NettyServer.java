@@ -27,9 +27,10 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) throws Exception {
                         ch.pipeline()
-                                .addLast(new LifeCycleTestHandler())
+                                // .addLast(new LifeCycleTestHandler())
                                 .addLast(new Spliter())
                                 .addLast(new PacketDecoder())
+                                .addLast(new AuthHandler())
                                 .addLast(new LoginRequestHandler())
                                 .addLast(new MessageRequestHandler())
                                 .addLast(new PacketEncoder());
