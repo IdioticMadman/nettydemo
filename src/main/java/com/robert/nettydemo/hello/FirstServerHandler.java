@@ -12,6 +12,7 @@ public class FirstServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+
         ByteBuf byteBuf = (ByteBuf) msg;
         System.out.println(new Date() + ": 服务端读取到数据-> :" + byteBuf.toString(Charset.forName("UTF-8")));
 
@@ -19,6 +20,8 @@ public class FirstServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println(new Date() + ": 服务端写出数据");
         ByteBuf out = getByteBuf(ctx);
         ctx.channel().writeAndFlush(out);
+        super.channelRead(ctx, msg);
+
     }
 
     private ByteBuf getByteBuf(ChannelHandlerContext ctx) {
