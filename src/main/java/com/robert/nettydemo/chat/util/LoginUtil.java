@@ -1,6 +1,7 @@
 package com.robert.nettydemo.chat.util;
 
 
+import com.robert.nettydemo.chat.attribute.Attributes;
 import io.netty.channel.Channel;
 import io.netty.util.Attribute;
 
