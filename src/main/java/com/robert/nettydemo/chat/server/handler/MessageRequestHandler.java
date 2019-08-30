@@ -1,8 +1,8 @@
 package com.robert.nettydemo.chat.server.handler;
 
 import com.robert.nettydemo.chat.bean.Session;
-import com.robert.nettydemo.chat.protocol.packet.MessageRequestPacket;
-import com.robert.nettydemo.chat.protocol.packet.MessageResponsePacket;
+import com.robert.nettydemo.chat.server.packet.MessageRequestPacket;
+import com.robert.nettydemo.chat.client.packet.MessageResponsePacket;
 import com.robert.nettydemo.chat.util.SessionUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;

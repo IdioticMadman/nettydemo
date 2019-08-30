@@ -1,19 +1,18 @@
-package com.robert.nettydemo.chat.protocol.packet;
+package com.robert.nettydemo.chat.server.packet;
 
 import com.robert.nettydemo.chat.protocol.Command;
 import com.robert.nettydemo.chat.protocol.Packet;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class MessageResponsePacket extends Packet {
-
-    private String message;
-    private String fromUserId;
-    private String fromUserName;
+public class CreateGroupRequestPacket extends Packet {
+    private List<String> userIds;
 
     public Byte getCommand() {
-        return Command.MESSAGE_RESPONSE;
+        return Command.CREATE_GROUP_REQUEST;
     }
 }

@@ -1,12 +1,16 @@
 package com.robert.nettydemo.chat.protocol.codec;
 
+import com.robert.nettydemo.chat.client.packet.CreateGroupResponsePacket;
+import com.robert.nettydemo.chat.client.packet.LoginResponsePacket;
+import com.robert.nettydemo.chat.client.packet.MessageResponsePacket;
 import com.robert.nettydemo.chat.protocol.Command;
-import com.robert.nettydemo.chat.bean.packet.*;
 import com.robert.nettydemo.chat.protocol.Packet;
-import com.robert.nettydemo.chat.protocol.packet.*;
 import com.robert.nettydemo.chat.protocol.serializer.JsonSerializer;
 import com.robert.nettydemo.chat.protocol.serializer.SerializeAlgorithm;
 import com.robert.nettydemo.chat.protocol.serializer.Serializer;
+import com.robert.nettydemo.chat.server.packet.CreateGroupRequestPacket;
+import com.robert.nettydemo.chat.server.packet.LoginRequestPacket;
+import com.robert.nettydemo.chat.server.packet.MessageRequestPacket;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashMap;

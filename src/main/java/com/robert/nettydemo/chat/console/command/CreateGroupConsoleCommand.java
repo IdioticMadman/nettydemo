@@ -1,6 +1,6 @@
 package com.robert.nettydemo.chat.console.command;
 
-import com.robert.nettydemo.chat.protocol.packet.CreateGroupRequestPacket;
+import com.robert.nettydemo.chat.server.packet.CreateGroupRequestPacket;
 import com.robert.nettydemo.chat.console.ConsoleCommand;
 import io.netty.channel.Channel;
 

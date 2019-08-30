@@ -1,9 +1,9 @@
 package com.robert.nettydemo.chat.client.handler;
 
-import com.robert.nettydemo.chat.protocol.packet.LoginRequestPacket;
-import com.robert.nettydemo.chat.protocol.packet.LoginResponsePacket;
+import com.robert.nettydemo.chat.server.packet.LoginRequestPacket;
+import com.robert.nettydemo.chat.client.packet.LoginResponsePacket;
 import com.robert.nettydemo.chat.protocol.Packet;
-import com.robert.nettydemo.chat.protocol.packet.MessageResponsePacket;
+import com.robert.nettydemo.chat.client.packet.MessageResponsePacket;
 import com.robert.nettydemo.chat.protocol.codec.PacketCodeC;
 import com.robert.nettydemo.chat.util.LoginUtil;
 import io.netty.buffer.ByteBuf;

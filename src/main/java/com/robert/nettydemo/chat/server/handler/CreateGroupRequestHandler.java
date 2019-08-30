@@ -1,6 +1,6 @@
 package com.robert.nettydemo.chat.server.handler;
 
-import com.robert.nettydemo.chat.protocol.packet.CreateGroupRequestPacket;
+import com.robert.nettydemo.chat.server.packet.CreateGroupRequestPacket;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 

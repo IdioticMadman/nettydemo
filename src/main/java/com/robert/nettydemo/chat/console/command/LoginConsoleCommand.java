@@ -1,6 +1,6 @@
 package com.robert.nettydemo.chat.console.command;
 
-import com.robert.nettydemo.chat.protocol.packet.LoginRequestPacket;
+import com.robert.nettydemo.chat.server.packet.LoginRequestPacket;
 import com.robert.nettydemo.chat.console.ConsoleCommand;
 import io.netty.channel.Channel;
 
