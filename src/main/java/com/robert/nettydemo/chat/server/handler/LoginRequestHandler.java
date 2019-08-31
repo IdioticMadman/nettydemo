@@ -1,8 +1,8 @@
 package com.robert.nettydemo.chat.server.handler;
 
 import com.robert.nettydemo.chat.bean.Session;
-import com.robert.nettydemo.chat.server.packet.LoginRequestPacket;
-import com.robert.nettydemo.chat.client.packet.LoginResponsePacket;
+import com.robert.nettydemo.chat.protocol.packet.request.LoginRequestPacket;
+import com.robert.nettydemo.chat.protocol.packet.response.LoginResponsePacket;
 import com.robert.nettydemo.chat.util.SessionUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -27,7 +27,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
             responsePacket.setSuccess(true);
             responsePacket.setUserId(uuid);
             responsePacket.setUserName(username);
-            System.out.println(new Date() + ": 用户 " + uuid + "登录成功！");
+            System.out.println(new Date() + ": 用户 " + username + "登录成功！");
         } else {
             responsePacket.setSuccess(false);
             responsePacket.setReason("账号密码验证失败");

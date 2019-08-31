@@ -1,4 +1,4 @@
-package com.robert.nettydemo.chat.server.packet;
+package com.robert.nettydemo.chat.protocol.packet.request;
 
 import com.robert.nettydemo.chat.protocol.Command;
 import com.robert.nettydemo.chat.protocol.Packet;

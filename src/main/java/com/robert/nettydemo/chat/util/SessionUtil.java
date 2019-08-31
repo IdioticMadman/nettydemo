@@ -4,6 +4,7 @@ import com.robert.nettydemo.chat.attribute.Attributes;
 import com.robert.nettydemo.chat.bean.Session;
 import com.sun.istack.internal.Nullable;
 import io.netty.channel.Channel;
+import io.netty.channel.group.ChannelGroup;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,6 +13,8 @@ public class SessionUtil {
 
     private static final Map<String, Channel> userIdChannelMap =
             new ConcurrentHashMap<String, Channel>();
+
+    private static final Map<String, ChannelGroup> groupIdChannelMap = new ConcurrentHashMap<String, ChannelGroup>();
 
     /**
      * 绑定会话
@@ -32,8 +35,10 @@ public class SessionUtil {
      */
     public static void unBindSession(Channel channel) {
         if (hasLogin(channel)) {
-            userIdChannelMap.remove(getSession(channel).getUserId());
+            Session session = getSession(channel);
+            userIdChannelMap.remove(session.getUserId());
             channel.attr(Attributes.SESSION).set(null);
+            System.out.println(session + " 退出登录！");
         }
     }
 
@@ -69,5 +74,23 @@ public class SessionUtil {
                 && channel.attr(Attributes.SESSION).get() != null;
     }
 
+    /**
+     * 缓存group信息
+     *
+     * @param groupId
+     * @param group
+     */
+    public static void bindChannelGroup(String groupId, ChannelGroup group) {
+        groupIdChannelMap.put(groupId, group);
+    }
 
+    /**
+     * 获取groupChannel
+     *
+     * @param groupId
+     * @return
+     */
+    public static ChannelGroup getChannelGroup(String groupId) {
+        return groupIdChannelMap.get(groupId);
+    }
 }

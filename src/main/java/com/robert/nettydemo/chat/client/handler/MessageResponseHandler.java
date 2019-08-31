@@ -1,6 +1,6 @@
 package com.robert.nettydemo.chat.client.handler;
 
-import com.robert.nettydemo.chat.client.packet.MessageResponsePacket;
+import com.robert.nettydemo.chat.protocol.packet.response.MessageResponsePacket;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 

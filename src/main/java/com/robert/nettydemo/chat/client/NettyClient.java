@@ -1,7 +1,6 @@
 package com.robert.nettydemo.chat.client;
 
-import com.robert.nettydemo.chat.client.handler.LoginResponseHandler;
-import com.robert.nettydemo.chat.client.handler.MessageResponseHandler;
+import com.robert.nettydemo.chat.client.handler.*;
 import com.robert.nettydemo.chat.protocol.codec.PacketDecoder;
 import com.robert.nettydemo.chat.protocol.codec.PacketEncoder;
 import com.robert.nettydemo.chat.protocol.codec.Spliter;
@@ -34,6 +33,11 @@ public class NettyClient {
                                 .addLast(new Spliter())
                                 .addLast(new PacketDecoder())
                                 .addLast(new LoginResponseHandler())
+                                .addLast(new LogoutResponseHandler())
+                                .addLast(new CreateGroupResponseHandler())
+                                .addLast(new JoinGroupResponseHandler())
+                                .addLast(new QuitGroupResponseHandler())
+                                .addLast(new ListGroupMembersResponseHandler())
                                 .addLast(new MessageResponseHandler())
                                 .addLast(new PacketEncoder());
                     }

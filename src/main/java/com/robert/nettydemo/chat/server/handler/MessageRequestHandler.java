@@ -1,8 +1,8 @@
 package com.robert.nettydemo.chat.server.handler;
 
 import com.robert.nettydemo.chat.bean.Session;
-import com.robert.nettydemo.chat.server.packet.MessageRequestPacket;
-import com.robert.nettydemo.chat.client.packet.MessageResponsePacket;
+import com.robert.nettydemo.chat.protocol.packet.request.MessageRequestPacket;
+import com.robert.nettydemo.chat.protocol.packet.response.MessageResponsePacket;
 import com.robert.nettydemo.chat.util.SessionUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -17,6 +17,7 @@ public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRe
         Session session = SessionUtil.getSession(ctx.channel());
         System.out.println(new Date() + ": 收到客户端消息: " + messageRequestPacket.getMessage());
 
+        //构建消息实体
         MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
         messageResponsePacket.setMessage(messageRequestPacket.getMessage());
         messageResponsePacket.setFromUserId(session.getUserId());

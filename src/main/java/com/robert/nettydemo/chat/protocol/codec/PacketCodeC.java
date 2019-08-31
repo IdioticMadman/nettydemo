@@ -1,16 +1,12 @@
 package com.robert.nettydemo.chat.protocol.codec;
 
-import com.robert.nettydemo.chat.client.packet.CreateGroupResponsePacket;
-import com.robert.nettydemo.chat.client.packet.LoginResponsePacket;
-import com.robert.nettydemo.chat.client.packet.MessageResponsePacket;
+import com.robert.nettydemo.chat.protocol.packet.request.*;
+import com.robert.nettydemo.chat.protocol.packet.response.*;
 import com.robert.nettydemo.chat.protocol.Command;
 import com.robert.nettydemo.chat.protocol.Packet;
 import com.robert.nettydemo.chat.protocol.serializer.JsonSerializer;
 import com.robert.nettydemo.chat.protocol.serializer.SerializeAlgorithm;
 import com.robert.nettydemo.chat.protocol.serializer.Serializer;
-import com.robert.nettydemo.chat.server.packet.CreateGroupRequestPacket;
-import com.robert.nettydemo.chat.server.packet.LoginRequestPacket;
-import com.robert.nettydemo.chat.server.packet.MessageRequestPacket;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashMap;
@@ -29,11 +25,24 @@ public class PacketCodeC {
         packetTypeMap.put(Command.LOGIN_REQUEST, LoginRequestPacket.class);
         packetTypeMap.put(Command.LOGIN_RESPONSE, LoginResponsePacket.class);
 
+        packetTypeMap.put(Command.LOGOUT_REQUEST, LogoutRequestPacket.class);
+        packetTypeMap.put(Command.LOGOUT_RESPONSE, LogoutResponsePacket.class);
+
         packetTypeMap.put(Command.MESSAGE_REQUEST, MessageRequestPacket.class);
         packetTypeMap.put(Command.MESSAGE_RESPONSE, MessageResponsePacket.class);
 
         packetTypeMap.put(Command.CREATE_GROUP_REQUEST, CreateGroupRequestPacket.class);
         packetTypeMap.put(Command.CREATE_GROUP_RESPONSE, CreateGroupResponsePacket.class);
+
+        packetTypeMap.put(Command.JOIN_GROUP_REQUEST, JoinGroupRequestPacket.class);
+        packetTypeMap.put(Command.JOIN_GROUP_RESPONSE, JoinGroupResponsePacket.class);
+
+        packetTypeMap.put(Command.QUIT_GROUP_REQUEST, QuitGroupRequestPacket.class);
+        packetTypeMap.put(Command.QUIT_GROUP_RESPONSE, QuitGroupResponsePacket.class);
+
+        packetTypeMap.put(Command.LIST_GROUP_MEMBERS_REQUEST, ListGroupMembersRequestPacket.class);
+        packetTypeMap.put(Command.LIST_GROUP_MEMBERS_RESPONSE, ListGroupMembersResponsePacket.class);
+
 
         serializerMap = new HashMap<Byte, Serializer>();
         Serializer serializer = new JsonSerializer();

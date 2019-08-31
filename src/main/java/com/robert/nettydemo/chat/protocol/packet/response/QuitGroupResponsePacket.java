@@ -1,20 +1,20 @@
-package com.robert.nettydemo.chat.client.packet;
+package com.robert.nettydemo.chat.protocol.packet.response;
 
 import com.robert.nettydemo.chat.protocol.Command;
 import com.robert.nettydemo.chat.protocol.Packet;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class LoginResponsePacket extends Packet {
+public class QuitGroupResponsePacket extends Packet {
 
+    private String groupId;
     private boolean success;
     private String reason;
-    private String userId;
-    private String userName;
 
     public Byte getCommand() {
-        return Command.LOGIN_RESPONSE;
+        return Command.QUIT_GROUP_RESPONSE;
     }
 }

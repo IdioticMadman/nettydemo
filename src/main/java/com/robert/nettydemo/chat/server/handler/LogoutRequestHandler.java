@@ -1,7 +1,7 @@
 package com.robert.nettydemo.chat.server.handler;
 
-import com.robert.nettydemo.chat.server.packet.LogoutRequestPacket;
-import com.robert.nettydemo.chat.client.packet.LogoutResponsePacket;
+import com.robert.nettydemo.chat.protocol.packet.request.LogoutRequestPacket;
+import com.robert.nettydemo.chat.protocol.packet.response.LogoutResponsePacket;
 import com.robert.nettydemo.chat.util.SessionUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

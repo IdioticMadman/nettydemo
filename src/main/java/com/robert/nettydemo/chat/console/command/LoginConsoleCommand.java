@@ -1,12 +1,12 @@
 package com.robert.nettydemo.chat.console.command;
 
-import com.robert.nettydemo.chat.server.packet.LoginRequestPacket;
+import com.robert.nettydemo.chat.protocol.packet.request.LoginRequestPacket;
 import com.robert.nettydemo.chat.console.ConsoleCommand;
+import com.robert.nettydemo.chat.util.IdUtil;
 import io.netty.channel.Channel;
 
 import java.util.Date;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class LoginConsoleCommand implements ConsoleCommand {
 
@@ -15,7 +15,7 @@ public class LoginConsoleCommand implements ConsoleCommand {
         String name = scanner.nextLine();
         System.out.println(new Date() + ": 客户端开始登录");
         LoginRequestPacket packet = new LoginRequestPacket();
-        packet.setUuid(UUID.randomUUID().toString().split("-")[0]);
+        packet.setUuid(IdUtil.randomId());
         packet.setUsername(name);
         packet.setPassword("123456");
         channel.writeAndFlush(packet);

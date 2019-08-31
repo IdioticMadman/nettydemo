@@ -1,4 +1,4 @@
-package com.robert.nettydemo.chat.client.packet;
+package com.robert.nettydemo.chat.protocol.packet.request;
 
 import com.robert.nettydemo.chat.protocol.Command;
 import com.robert.nettydemo.chat.protocol.Packet;
@@ -7,12 +7,11 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class LogoutResponsePacket extends Packet {
+public class JoinGroupRequestPacket extends Packet {
 
-    private boolean success;
-    private String reason;
+    private String groupId;
 
     public Byte getCommand() {
-        return Command.LOGOUT_RESPONSE;
+        return Command.JOIN_GROUP_REQUEST;
     }
 }

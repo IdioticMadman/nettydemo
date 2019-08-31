@@ -3,9 +3,7 @@ package com.robert.nettydemo.chat.server;
 import com.robert.nettydemo.chat.protocol.codec.PacketDecoder;
 import com.robert.nettydemo.chat.protocol.codec.PacketEncoder;
 import com.robert.nettydemo.chat.protocol.codec.Spliter;
-import com.robert.nettydemo.chat.server.handler.AuthHandler;
-import com.robert.nettydemo.chat.server.handler.LoginRequestHandler;
-import com.robert.nettydemo.chat.server.handler.MessageRequestHandler;
+import com.robert.nettydemo.chat.server.handler.*;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -35,6 +33,11 @@ public class NettyServer {
                                 .addLast(new PacketDecoder())
                                 .addLast(new LoginRequestHandler())
                                 .addLast(new AuthHandler())
+                                .addLast(new LogoutRequestHandler())
+                                .addLast(new CreateGroupRequestHandler())
+                                .addLast(new JoinGroupRequestHandler())
+                                .addLast(new QuitGroupRequestHandler())
+                                .addLast(new ListGroupMembersRequestHandler())
                                 .addLast(new MessageRequestHandler())
                                 .addLast(new PacketEncoder());
                     }
