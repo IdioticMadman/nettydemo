@@ -4,12 +4,20 @@ import com.robert.nettydemo.chat.bean.Session;
 import com.robert.nettydemo.chat.protocol.packet.request.LoginRequestPacket;
 import com.robert.nettydemo.chat.protocol.packet.response.LoginResponsePacket;
 import com.robert.nettydemo.chat.util.SessionUtil;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.util.Date;
 
+@ChannelHandler.Sharable
 public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
+
+    public static final LoginRequestHandler INSTANCE = new LoginRequestHandler();
+
+    protected LoginRequestHandler() {
+    }
+
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket requestPacket) throws Exception {
         //构建响应
         LoginResponsePacket responsePacket = new LoginResponsePacket();

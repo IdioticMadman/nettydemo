@@ -7,6 +7,7 @@ import com.robert.nettydemo.chat.protocol.codec.Spliter;
 import com.robert.nettydemo.chat.console.ConsoleCommand;
 import com.robert.nettydemo.chat.console.ConsoleCommandManager;
 import com.robert.nettydemo.chat.console.command.LoginConsoleCommand;
+import com.robert.nettydemo.chat.handler.IMIdleStateHandler;
 import com.robert.nettydemo.chat.util.SessionUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -30,6 +31,7 @@ public class NettyClient {
                 .handler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) throws Exception {
                         ch.pipeline()
+                                .addLast(new IMIdleStateHandler())
                                 .addLast(new Spliter())
                                 .addLast(new PacketDecoder())
                                 .addLast(new LoginResponseHandler())
@@ -39,7 +41,9 @@ public class NettyClient {
                                 .addLast(new QuitGroupResponseHandler())
                                 .addLast(new ListGroupMembersResponseHandler())
                                 .addLast(new MessageResponseHandler())
-                                .addLast(new PacketEncoder());
+                                .addLast(new GroupMessageResponseHandler())
+                                .addLast(new PacketEncoder())
+                                .addLast(new HeartBeatTimerHandler());
                     }
                 })
                 .connect("127.0.0.1", 8000)

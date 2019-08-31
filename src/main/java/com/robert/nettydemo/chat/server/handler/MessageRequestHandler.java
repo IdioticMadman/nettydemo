@@ -5,12 +5,19 @@ import com.robert.nettydemo.chat.protocol.packet.request.MessageRequestPacket;
 import com.robert.nettydemo.chat.protocol.packet.response.MessageResponsePacket;
 import com.robert.nettydemo.chat.util.SessionUtil;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.util.Date;
-
+@ChannelHandler.Sharable
 public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRequestPacket> {
+
+    public static final MessageRequestHandler INSTANCE = new MessageRequestHandler();
+
+    protected MessageRequestHandler() {
+    }
+
     protected void channelRead0(ChannelHandlerContext ctx, MessageRequestPacket messageRequestPacket) throws Exception {
 
         //获取当前channel的用户信息

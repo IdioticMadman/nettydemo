@@ -17,17 +17,19 @@ public class ConsoleCommandManager implements ConsoleCommand {
             "createGroup",
             "joinGroup",
             "quitGroup",
-            "listGroupMembers"
+            "listGroupMembers",
+            "sendToGroup"
     };
 
     public ConsoleCommandManager() {
-        this.consoleCommandMap = new HashMap<String, ConsoleCommand>();
+        this.consoleCommandMap = new HashMap<>();
         consoleCommandMap.put(consoleCommand[0], new SendToUserConsoleCommand());
         consoleCommandMap.put(consoleCommand[1], new LogoutConsoleCommand());
         consoleCommandMap.put(consoleCommand[2], new CreateGroupConsoleCommand());
         consoleCommandMap.put(consoleCommand[3], new JoinGroupConsoleCommand());
         consoleCommandMap.put(consoleCommand[4], new QuitGroupConsoleCommand());
         consoleCommandMap.put(consoleCommand[5], new ListGroupMemberConsoleCommand());
+        consoleCommandMap.put(consoleCommand[6], new SendToGroupConsoleCommand());
 
     }
 

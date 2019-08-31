@@ -3,11 +3,18 @@ package com.robert.nettydemo.chat.server.handler;
 import com.robert.nettydemo.chat.protocol.packet.request.QuitGroupRequestPacket;
 import com.robert.nettydemo.chat.protocol.packet.response.QuitGroupResponsePacket;
 import com.robert.nettydemo.chat.util.SessionUtil;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 
+@ChannelHandler.Sharable
 public class QuitGroupRequestHandler extends SimpleChannelInboundHandler<QuitGroupRequestPacket> {
+
+    public static final QuitGroupRequestHandler INSTANCE = new QuitGroupRequestHandler();
+
+    protected QuitGroupRequestHandler() {
+    }
 
     protected void channelRead0(ChannelHandlerContext ctx, QuitGroupRequestPacket msg) throws Exception {
         String groupId = msg.getGroupId();

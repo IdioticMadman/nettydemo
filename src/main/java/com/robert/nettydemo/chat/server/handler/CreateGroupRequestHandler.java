@@ -6,6 +6,7 @@ import com.robert.nettydemo.chat.protocol.packet.request.CreateGroupRequestPacke
 import com.robert.nettydemo.chat.util.IdUtil;
 import com.robert.nettydemo.chat.util.SessionUtil;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
@@ -15,7 +16,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@ChannelHandler.Sharable
 public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<CreateGroupRequestPacket> {
+
+    public static final CreateGroupRequestHandler INSTANCE = new CreateGroupRequestHandler();
+
+    protected CreateGroupRequestHandler() {
+    }
 
     protected void channelRead0(ChannelHandlerContext ctx, CreateGroupRequestPacket msg) throws Exception {
         List<String> userIds = msg.getUserIds();

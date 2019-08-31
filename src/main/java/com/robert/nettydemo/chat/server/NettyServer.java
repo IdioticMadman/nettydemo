@@ -1,7 +1,8 @@
 package com.robert.nettydemo.chat.server;
 
-import com.robert.nettydemo.chat.protocol.codec.PacketDecoder;
-import com.robert.nettydemo.chat.protocol.codec.PacketEncoder;
+import com.robert.nettydemo.chat.client.handler.HeartBeatTimerHandler;
+import com.robert.nettydemo.chat.handler.IMIdleStateHandler;
+import com.robert.nettydemo.chat.protocol.codec.PacketCodecHandler;
 import com.robert.nettydemo.chat.protocol.codec.Spliter;
 import com.robert.nettydemo.chat.server.handler.*;
 import io.netty.bootstrap.ServerBootstrap;
@@ -29,17 +30,13 @@ public class NettyServer {
                     protected void initChannel(NioSocketChannel ch) throws Exception {
                         ch.pipeline()
                                 // .addLast(new LifeCycleTestHandler())
-                                .addLast(new Spliter())
-                                .addLast(new PacketDecoder())
-                                .addLast(new LoginRequestHandler())
-                                .addLast(new AuthHandler())
-                                .addLast(new LogoutRequestHandler())
-                                .addLast(new CreateGroupRequestHandler())
-                                .addLast(new JoinGroupRequestHandler())
-                                .addLast(new QuitGroupRequestHandler())
-                                .addLast(new ListGroupMembersRequestHandler())
-                                .addLast(new MessageRequestHandler())
-                                .addLast(new PacketEncoder());
+                                .addLast(new IMIdleStateHandler())
+                                .addLast(new Spliter())//Spliter不是无状态的，需要每个链接都维护一个Spliter实例
+                                .addLast(PacketCodecHandler.INSTANCE)
+                                .addLast(LoginRequestHandler.INSTANCE)
+                                .addLast(HeartBeatRequestHandler.INSTANCE)
+                                .addLast(AuthHandler.INSTANCE)
+                                .addLast(IMHandler.INSTANCE);
                     }
                 })
                 .handler(new ChannelInitializer<NioServerSocketChannel>() {
